@@ -29,7 +29,7 @@ abundants = findAbundantNums(28123)
 sumTotal = 0
 
 for i in range(28123):
-	if !isAbundantSum(i, abundants):
+	if not isAbundantSum(i, abundants):
 		sumTotal += i
 	if i % 100 == 0:
 		print(i)

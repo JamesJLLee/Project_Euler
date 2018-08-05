@@ -3,6 +3,7 @@ tot = 200
 
 def main():
 	print("Total coin combinations: " + str(coin_combs(tot, all_coins)))
+
 def coin_combs(total, coins):
 	combs = 0
 	coin = 0
