@@ -2,21 +2,25 @@ order_of_value = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
 royals = ["T","J","Q","K","A"]
 suits = ["H","C","S","D"]
 
+# These functions return the top valued card of each rank as list if true
+# otherwise return false
+
 def is_royal_flush(hand: Hand):
     if hand.is_straight() and hand.is_flush():
         print([(card_value in royals) for card_value in hand.get_values()])
         if all([(card_value in royals) for card_value in hand.get_values()]):
-            return True
+            return [sorted(hand.get_values())[-1]]
     return False
 
 def is_straight_flush(hand: Hand):
     if hand.is_straight() and hand.is_flush():
-        return True
+        return [sorted(hand.get_values())[-1]]
     return False
 
 def is_four_of_a_kind(hand: Hand):
-    if len(set(hand.get_values())) == 1:
-        return True
+    value_freqs = list(hand.get_value_freqs().values())
+    if sorted(value_freqs) == ['1','4']:
+        return 
     else:
         return False
 
@@ -41,7 +45,7 @@ def is_three_of_a_kind(hand: Hand):
         return False
 
 def is_two_pairs(hand: Hand):
-    value_freqs = hand.get_value_freqs()
+    value_freqs = list(hand.get_value_freqs().values())
     if sorted(value_freqs) == ['1','2','2']:
         return True
     else:
@@ -49,8 +53,8 @@ def is_two_pairs(hand: Hand):
 
 def is_one_pair(hand: Hand):
     value_freqs = hand.get_value_freqs()
-    if '2' in value_freqs:
-        return True
+    if '2' in value_freqs.values():
+        return max(set(hand.), key=list.count)
     else:
         return False
 
@@ -108,7 +112,7 @@ class Hand:
     def get_values(self):
         return [card[0] for card in self.cards]
     
-    def get_values_and_suits(self):
+    def get_values_and_suits(self): # [[value1, ...], [suit1, ...]]
         return list(map(list, zip(*[list(card) for card in hand1.cards])))
         
 hand1 = Hand()
